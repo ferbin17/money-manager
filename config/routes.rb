@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   # Funds
   resources :funds
 
+  # Goals
+  resources :goals
+
   # Defines the root path route ("/")
   root "dashboard#index"
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_08_17_045748) do
+ActiveRecord::Schema[7.1].define(version: 2025_08_17_062257) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,6 +35,17 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_17_045748) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["asset_house_id"], name: "index_funds_on_asset_house_id"
+  end
+
+  create_table "goals", force: :cascade do |t|
+    t.string "name", null: false
+    t.decimal "target_amount", precision: 15, scale: 2, default: "0.0"
+    t.decimal "target_date", precision: 15, scale: 2, default: "0.0"
+    t.decimal "current_amount", precision: 15, scale: 2, default: "0.0"
+    t.integer "status", default: 0
+    t.boolean "deleted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "funds", "asset_houses"
