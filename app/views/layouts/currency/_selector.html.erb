@@ -1,0 +1,23 @@
+
+
+<div class="hidden md:flex items-center">
+            <div class="relative" data-controller="currency">
+                <button type="button" class="inline-flex items-center text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200" 
+                        id="currency-menu-button" 
+                        data-currency-target="button"
+                        data-action="click->currency#toggle"
+                        aria-expanded="false" 
+                        aria-haspopup="true">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                </svg>
+                <span data-currency-target="display">₹ INR</span>
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+                </button>
+            
+                <!-- Currency Dropdown Menu -->
+                <%= render partial: "layouts/currency/dropdown_menu" %>
+            </div>
+        </div>

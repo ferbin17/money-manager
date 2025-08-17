@@ -1,0 +1,11 @@
+<div class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" 
+    role="menu" 
+    aria-orientation="vertical" 
+    aria-labelledby="currency-menu-button" 
+    data-currency-target="menu">
+    <div class="py-1" role="none">
+        <% currencies.each do |currency| %>
+            <%= render partial: "layouts/currency/item", locals: { currency: currency } %>
+        <% end %>
+    </div>
+</div>
