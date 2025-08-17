@@ -8,5 +8,12 @@ class Goal < ApplicationRecord
     inactive: 1
   }
 
-  validate :name, presence: true
+  validates :name, presence: true
+  validate :target_date_must_be_future, if: :target_date
+
+  private
+
+  def target_date_must_be_future
+    errors.add(:target_date, "must be after today") if target_date <= Time.zone.today
+  end
 end

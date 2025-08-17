@@ -29,6 +29,58 @@
 
 en:
   hello: "Hello world"
+  pages:
+    view_details: "View Details"
+    edit_text: "Edit"
+    index:
+      funds:
+        header_title: "Funds"
+        header_subtitle: "Manage your investment funds and track their performance"
+        add_new: "Add New Fund"
+        empty_title: "No funds yet"
+        empty_subtitle: "Get started by adding your fund."
+        add_your_first: "Add your first fund."
+      asset_houses:
+        header_title: "Asset Houses"
+        header_subtitle: "Manage asset management companies and fund houses"
+        add_new: "Add New Asset House"
+        empty_title: "No asset houses yet"
+        empty_subtitle: "Get started by adding your first asset management company."
+        add_your_first: "Add Your First Asset House."
+      goals:
+        header_title: "Goals"
+        header_subtitle: "Manage your goals and track their progress"
+        add_new: "Add New Goal"
+        empty_title: "No goals yet"
+        empty_subtitle: "Get started by adding your goal."
+        add_your_first: "Add your first goal."
+    new:
+      funds:
+        create_new: "Create New Fund"
+        add_new: "Add a new investment fund to your portfolio"
+      asset_houses:
+        create_new: "Create New Asset House"
+        add_new: "Add a new asset management company or fund house"
+      goals:
+        create_new: "Create New Goal"
+        add_new: "Add a new goal to your life"
+    edit:
+      funds:
+        back_to_item: "Back to Fund"
+        edit_item: "Edit Fund"
+        update_item_for: "Update the details for %{name}"
+        item_detail: "Fund Details"
+      asset_houses:
+        back_to_item: "Back to Asset House"
+        edit_item: "Edit Asset House"
+        update_item_for: "Update the details for %{name}"
+        item_detail: "Asset House Details"
+      goals:
+        back_to_item: "Back to Goal"
+        edit_item: "Edit Goal"
+        update_item_for: "Update the details for %{name}"
+        item_detail: "Goal Details"
+
   funds:
     not_found: "Fund not found"
     created_successfully: "Fund was successfully created"
@@ -38,3 +90,8 @@ en:
     created_successfully: "Asset house was successfully created"
     updated_successfully: "Asset house was successfully updated"
     destroyed_successfully: "Asset house was successfully deleted"
+  goals:
+    not_found: "Goal not found"
+    created_successfully: "Goal was successfully created"
+    updated_successfully: "Goal was successfully updated"
+    destroyed_successfully: "Goal was successfully deleted"

@@ -40,7 +40,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_17_062257) do
   create_table "goals", force: :cascade do |t|
     t.string "name", null: false
     t.decimal "target_amount", precision: 15, scale: 2, default: "0.0"
-    t.decimal "target_date", precision: 15, scale: 2, default: "0.0"
+    t.date "target_date"
     t.decimal "current_amount", precision: 15, scale: 2, default: "0.0"
     t.integer "status", default: 0
     t.boolean "deleted", default: false
