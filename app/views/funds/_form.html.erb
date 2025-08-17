@@ -1,0 +1,124 @@
+<%= form_with(model: fund, local: true, class: "space-y-6") do |form| %>
+  <% if fund.errors.any? %>
+    <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+      <div class="flex">
+        <div class="flex-shrink-0">
+          <svg class="h-5 w-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+          </svg>
+        </div>
+        <div class="ml-3">
+          <h3 class="text-sm font-medium text-red-800">
+            <%= pluralize(fund.errors.count, "error") %> prohibited this fund from being saved:
+          </h3>
+          <div class="mt-2 text-sm text-red-700">
+            <ul class="list-disc pl-5 space-y-1">
+              <% fund.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- Basic Information -->
+  <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+    <h3 class="text-lg font-semibold text-gray-900 mb-4">Basic Information</h3>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div>
+        <%= form.label :name, class: "block text-sm font-medium text-gray-700 mb-2" %>
+        <%= form.text_field :name, class: "w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200", placeholder: "Enter fund name" %>
+      </div>
+
+      <div>
+        <%= form.label :asset_house_id, "Asset House", class: "block text-sm font-medium text-gray-700 mb-2" %>
+        <%= form.collection_select :asset_house_id, AssetHouse.all, :id, :name, { prompt: 'Select asset house', selected: params[:asset_house_id] || fund.asset_house_id }, { class: "w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200" } %>
+        <p class="mt-1 text-xs text-gray-500">Choose the asset management company</p>
+      </div>
+
+      <div>
+        <%= form.label :status, class: "block text-sm font-medium text-gray-700 mb-2" %>
+        <%= form.select :status, options_for_select([['Active', 'active'], ['Inactive', 'inactive'], ['Suspended', 'suspended']], fund.status), { prompt: 'Select status' }, { class: "w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200" } %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fund Classification -->
+  <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+    <h3 class="text-lg font-semibold text-gray-900 mb-4">Fund Classification</h3>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div>
+        <%= form.label :fund_type, class: "block text-sm font-medium text-gray-700 mb-2" %>
+        <%= form.select :fund_type, Fund.fund_types.keys.map { |type| [type.humanize, type] }, { prompt: 'Select fund type' }, { class: "w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200" } %>
+        <p class="mt-1 text-xs text-gray-500">Choose the primary category for this fund</p>
+      </div>
+
+      <div>
+        <%= form.label :subtype, class: "block text-sm font-medium text-gray-700 mb-2" %>
+        <%= form.select :subtype, Fund.subtypes.keys.map { |subtype| [subtype.humanize, subtype] }, { prompt: 'Select subtype' }, { class: "w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200" } %>
+        <p class="mt-1 text-xs text-gray-500">Choose the specific subtype classification</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Financial Details -->
+  <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+    <h3 class="text-lg font-semibold text-gray-900 mb-4">Financial Details</h3>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div>
+        <%= form.label :total_investment, class: "block text-sm font-medium text-gray-700 mb-2" %>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <span class="text-gray-500 sm:text-sm">₹</span>
+          </div>
+          <%= form.number_field :total_investment, step: "0.01", min: "0", class: "w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200", placeholder: "0.00" %>
+        </div>
+        <p class="mt-1 text-xs text-gray-500">Total amount invested</p>
+      </div>
+
+      <div>
+        <%= form.label :current_nav, class: "block text-sm font-medium text-gray-700 mb-2" %>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <span class="text-gray-500 sm:text-sm">₹</span>
+          </div>
+          <%= form.number_field :current_nav, step: "0.01", min: "0", class: "w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200", placeholder: "0.00" %>
+        </div>
+        <p class="mt-1 text-xs text-gray-500">Current Net Asset Value</p>
+      </div>
+
+      <div>
+        <%= form.label :current_value, class: "block text-sm font-medium text-gray-700 mb-2" %>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <span class="text-gray-500 sm:text-sm">₹</span>
+          </div>
+          <%= form.number_field :current_value, step: "0.01", min: "0", class: "w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200", placeholder: "0.00" %>
+        </div>
+        <p class="mt-1 text-xs text-gray-500">Current market value</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Actions -->
+  <div class="flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-4">
+    <%= link_to funds_path, class: "inline-flex justify-center items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200" do %>
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+      Cancel
+    <% end %>
+    
+    <%= form.submit class: "inline-flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200" do %>
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+      </svg>
+      <%= fund.persisted? ? 'Update Fund' : 'Create Fund' %>
+    <% end %>
+  </div>
+<% end %>

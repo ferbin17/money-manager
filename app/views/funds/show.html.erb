@@ -1,0 +1,127 @@
+<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <!-- Back Navigation -->
+    <div class="mb-6">
+      <%= link_to funds_path, class: "inline-flex items-center text-sm text-gray-500 hover:text-gray-700 transition-colors duration-200" do %>
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Back to Funds
+      <% end %>
+    </div>
+
+    <!-- Fund Header -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+      <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between">
+        <div class="flex-1">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-green-600 rounded-xl flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+              </svg>
+            </div>
+            <div>
+              <h1 class="text-2xl sm:text-3xl font-bold text-gray-900"><%= @fund.name %></h1>
+              <div class="flex items-center space-x-3 mt-2">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                  <%= @fund.fund_type.humanize %>
+                </span>
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                  <%= @fund.subtype.humanize %>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 sm:mt-0 flex space-x-3">
+          <%= link_to edit_fund_path(@fund), class: "inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200" do %>
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+            </svg>
+            Edit Fund
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fund Details Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <!-- Financial Overview -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+        <h2 class="text-lg font-semibold text-gray-900 mb-4">Financial Overview</h2>
+        <div class="space-y-4">
+          <div class="flex justify-between items-center py-3 border-b border-gray-100">
+            <span class="text-gray-600">Total Investment</span>
+            <span class="text-lg font-semibold text-gray-900">₹<%= number_with_precision(@fund.total_investment, precision: 2) %></span>
+          </div>
+          <div class="flex justify-between items-center py-3 border-b border-gray-100">
+            <span class="text-gray-600">Current NAV</span>
+            <span class="text-lg font-semibold text-gray-900">₹<%= number_with_precision(@fund.current_nav, precision: 2) %></span>
+          </div>
+          <div class="flex justify-between items-center py-3 border-b border-gray-100">
+            <span class="text-gray-600">Current Value</span>
+            <span class="text-lg font-semibold text-gray-900">₹<%= number_with_precision(@fund.current_value, precision: 2) %></span>
+          </div>
+          <div class="flex justify-between items-center py-3">
+            <span class="text-gray-600">Status</span>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+              <%= @fund.status&.humanize || 'Active' %>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fund Information -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+        <h2 class="text-lg font-semibold text-gray-900 mb-4">Fund Information</h2>
+        <div class="space-y-4">
+          <div class="flex justify-between items-center py-3 border-b border-gray-100">
+            <span class="text-gray-600">Fund Type</span>
+            <span class="font-medium text-gray-900"><%= @fund.fund_type.humanize %></span>
+          </div>
+          <div class="flex justify-between items-center py-3 border-b border-gray-100">
+            <span class="text-gray-600">Subtype</span>
+            <span class="font-medium text-gray-900"><%= @fund.subtype.humanize %></span>
+          </div>
+          <div class="flex justify-between items-center py-3 border-b border-gray-100">
+            <span class="text-gray-600">Created</span>
+            <span class="font-medium text-gray-900"><%= @fund.created_at.strftime("%B %d, %Y") %></span>
+          </div>
+          <div class="flex justify-between items-center py-3">
+            <span class="text-gray-600">Last Updated</span>
+            <span class="font-medium text-gray-900"><%= @fund.updated_at.strftime("%B %d, %Y") %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Performance Chart Placeholder -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+      <h2 class="text-lg font-semibold text-gray-900 mb-4">Performance Chart</h2>
+      <div class="h-64 bg-gray-50 rounded-lg flex items-center justify-center">
+        <div class="text-center">
+          <svg class="mx-auto w-12 h-12 text-gray-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+          </svg>
+          <p class="text-sm text-gray-500">Performance chart will be displayed here</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+      <%= link_to funds_path, class: "flex-1 sm:flex-none inline-flex justify-center items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200" do %>
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+        </svg>
+        View All Funds
+      <% end %>
+      <%= link_to edit_fund_path(@fund), class: "flex-1 sm:flex-none inline-flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200" do %>
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+        </svg>
+        Edit Fund
+      <% end %>
+    </div>
+  </div>
+</div>

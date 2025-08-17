@@ -1,0 +1,221 @@
+<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <!-- Back Navigation -->
+    <div class="mb-6">
+      <%= link_to asset_houses_path, class: "inline-flex items-center text-sm text-gray-500 hover:text-gray-700 transition-colors duration-200" do %>
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Back to Asset Houses
+      <% end %>
+    </div>
+
+    <!-- Asset House Header -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+      <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between">
+        <div class="flex-1">
+          <div class="flex items-center mb-4">
+            <div class="w-16 h-16 bg-gradient-to-r from-blue-600 to-green-600 rounded-xl flex items-center justify-center mr-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+              </svg>
+            </div>
+            <div>
+              <h1 class="text-2xl sm:text-3xl font-bold text-gray-900"><%= @asset_house.name %></h1>
+              <% if @asset_house.description.present? %>
+                <p class="mt-2 text-sm sm:text-base text-gray-600 max-w-2xl"><%= @asset_house.description %></p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 sm:mt-0 flex space-x-3">
+          <%= link_to edit_asset_house_path(@asset_house), class: "inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200" do %>
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+            </svg>
+            Edit Asset House
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Asset House Details Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <!-- Contact Information -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+        <h2 class="text-lg font-semibold text-gray-900 mb-4">Contact Information</h2>
+        <div class="space-y-4">
+          <% if @asset_house.website.present? %>
+            <div class="flex items-center py-3 border-b border-gray-100">
+              <svg class="w-5 h-5 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+              </svg>
+              <div class="flex-1">
+                <span class="text-sm text-gray-500">Website</span>
+                <div class="mt-1">
+                  <a href="<%= @asset_house.website %>" target="_blank" class="text-blue-600 hover:text-blue-800 font-medium">
+                    <%= @asset_house.website %>
+                  </a>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          
+          <% if @asset_house.contact_email.present? %>
+            <div class="flex items-center py-3 border-b border-gray-100">
+              <svg class="w-5 h-5 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              <div class="flex-1">
+                <span class="text-sm text-gray-500">Email</span>
+                <div class="mt-1">
+                  <a href="mailto:<%= @asset_house.contact_email %>" class="text-blue-600 hover:text-blue-800 font-medium">
+                    <%= @asset_house.contact_email %>
+                  </a>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+          <% if @asset_house.contact_phone.present? %>
+            <div class="flex items-center py-3 border-b border-gray-100">
+              <svg class="w-5 h-5 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              </svg>
+              <div class="flex-1">
+                <span class="text-sm text-gray-500">Phone</span>
+                <div class="mt-1">
+                  <a href="tel:<%= @asset_house.contact_phone %>" class="text-blue-600 hover:text-blue-800 font-medium">
+                    <%= @asset_house.contact_phone %>
+                  </a>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+          <div class="flex items-center py-3">
+            <svg class="w-5 h-5 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+            </svg>
+            <div class="flex-1">
+              <span class="text-sm text-gray-500">Total Funds</span>
+              <div class="mt-1">
+                <span class="text-lg font-semibold text-gray-900"><%= @asset_house.funds.count %></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Statistics -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+        <h2 class="text-lg font-semibold text-gray-900 mb-4">Fund Statistics</h2>
+        <div class="space-y-4">
+          <div class="flex justify-between items-center py-3 border-b border-gray-100">
+            <span class="text-gray-600">Total Investment</span>
+            <span class="text-lg font-semibold text-gray-900">₹<%= number_with_precision(@asset_house.funds.sum(:total_investment), precision: 2) %></span>
+          </div>
+          <div class="flex justify-between items-center py-3 border-b border-gray-100">
+            <span class="text-gray-600">Current Value</span>
+            <span class="text-lg font-semibold text-gray-900">₹<%= number_with_precision(@asset_house.funds.sum(:current_value), precision: 2) %></span>
+          </div>
+          <div class="flex justify-between items-center py-3">
+            <span class="text-gray-600">Created</span>
+            <span class="font-medium text-gray-900"><%= @asset_house.created_at.strftime("%B %d, %Y") %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Associated Funds -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-semibold text-gray-900">Associated Funds</h2>
+        <%= link_to new_fund_path(asset_house_id: @asset_house.id), class: "inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200" do %>
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+          </svg>
+          Add Fund
+        <% end %>
+      </div>
+
+      <% if @asset_house.funds.any? %>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fund Name</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subtype</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Investment</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Value</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <% @asset_house.funds.each do |fund| %>
+                <tr class="hover:bg-gray-50">
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm font-medium text-gray-900"><%= fund.name %></div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                      <%= fund.fund_type.humanize %>
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                      <%= fund.subtype.humanize %>
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    ₹<%= number_with_precision(fund.total_investment, precision: 2) %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    ₹<%= number_with_precision(fund.current_value, precision: 2) %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <%= link_to "View", fund_path(fund), class: "text-blue-600 hover:text-blue-900 mr-3" %>
+                    <%= link_to "Edit", edit_fund_path(fund), class: "text-green-600 hover:text-green-900" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% else %>
+        <div class="text-center py-8">
+          <div class="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+            <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+            </svg>
+          </div>
+          <h3 class="text-sm font-medium text-gray-900 mb-2">No funds yet</h3>
+          <p class="text-sm text-gray-500 mb-4">This asset house doesn't have any funds yet.</p>
+          <%= link_to new_fund_path(asset_house_id: @asset_house.id), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200" do %>
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+            </svg>
+            Add First Fund
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+      <%= link_to asset_houses_path, class: "flex-1 sm:flex-none inline-flex justify-center items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200" do %>
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+        </svg>
+        View All Asset Houses
+      <% end %>
+      <%= link_to edit_asset_house_path(@asset_house), class: "flex-1 sm:flex-none inline-flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200" do %>
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+        </svg>
+        Edit Asset House
+      <% end %>
+    </div>
+  </div>
+</div>
