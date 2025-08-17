@@ -10,7 +10,8 @@ class Fund < ApplicationRecord
     savings: 1,
     current: 2,
     fixed: 3,
-    recurring: 4
+    recurring: 4,
+    mutual_fund: 5
   }
 
   enum :subtype, {
@@ -19,6 +20,12 @@ class Fund < ApplicationRecord
     elss: 2,
     debt: 3,
     equity: 4
+  }
+
+  enum :status, {
+    active: 0,
+    inactive: 1,
+    suspended: 2
   }
 
   validates :name, :fund_type, :subtype, presence: true
