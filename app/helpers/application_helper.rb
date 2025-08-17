@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def render_if_exists(partial, locals = {})
+    render(partial: partial, locals: locals) if lookup_context.exists?(partial, [], true)
+  end
+
   def currencies
     @currencies ||= [
       { name: "Indian Rupee (INR)", code: "INR", symbol: "₹" },

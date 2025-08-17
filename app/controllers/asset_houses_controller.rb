@@ -3,11 +3,13 @@
 class AssetHousesController < ApplicationController
   include ItemCrudable
 
-  def show
-    @asset_house = @item
-  end
-
   private
+
+  def set_item
+    @item = item_class.includes(:funds).find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to send("#{item_type}s_path"), alert: t("#{item_type}s.not_found")
+  end
 
   def item_type
     @item_type ||= "asset_house"

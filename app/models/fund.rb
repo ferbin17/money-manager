@@ -29,14 +29,4 @@ class Fund < ApplicationRecord
   }
 
   validates :name, :fund_type, :subtype, presence: true
-
-  before_save :set_nav_and_value
-
-  private
-
-  def set_nav_and_value
-    self.total_investment = 0.0
-    self.current_nav = 0.0
-    self.current_value = 0.0
-  end
 end

@@ -80,6 +80,21 @@ en:
         edit_item: "Edit Goal"
         update_item_for: "Update the details for %{name}"
         item_detail: "Goal Details"
+    show:
+      performance_chart: "Performance Chart"
+      performance_chart_info: "Performance chart will be displayed here:"
+      funds:
+        back_to_item: "Back to Fund"
+        edit_item: "Edit Fund"
+        view_all: "View All Funds"
+      asset_houses:
+        back_to_item: "Back to Asset House"
+        edit_item: "Edit Asset House"
+        view_all: "View All Asset Houses"
+      goals:
+        back_to_item: "Back to Goal"
+        edit_item: "Edit Goal"
+        view_all: "View All Goals"
 
   funds:
     not_found: "Fund not found"

@@ -1,0 +1,22 @@
+<!-- Fund Information -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+  <h2 class="text-lg font-semibold text-gray-900 mb-4">Fund Information</h2>
+  <div class="space-y-4">
+    <div class="flex justify-between items-center py-3 border-b border-gray-100">
+      <span class="text-gray-600">Fund Type</span>
+      <span class="font-medium text-gray-900"><%= item.fund_type.humanize %></span>
+    </div>
+    <div class="flex justify-between items-center py-3 border-b border-gray-100">
+      <span class="text-gray-600">Subtype</span>
+      <span class="font-medium text-gray-900"><%= item.subtype.humanize %></span>
+    </div>
+    <div class="flex justify-between items-center py-3 border-b border-gray-100">
+      <span class="text-gray-600">Created</span>
+      <span class="font-medium text-gray-900"><%= item.created_at.strftime("%B %d, %Y") %></span>
+    </div>
+    <div class="flex justify-between items-center py-3">
+      <span class="text-gray-600">Last Updated</span>
+      <span class="font-medium text-gray-900"><%= item.updated_at.strftime("%B %d, %Y") %></span>
+    </div>
+  </div>
+</div>

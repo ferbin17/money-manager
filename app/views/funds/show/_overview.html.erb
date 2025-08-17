@@ -1,0 +1,24 @@
+<!-- Financial Overview -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+  <h2 class="text-lg font-semibold text-gray-900 mb-4">Financial Overview</h2>
+  <div class="space-y-4">
+    <div class="flex justify-between items-center py-3 border-b border-gray-100">
+      <span class="text-gray-600">Total Investment</span>
+      <span class="text-lg font-semibold text-gray-900">₹<%= number_with_precision(item.total_investment, precision: 2) %></span>
+    </div>
+    <div class="flex justify-between items-center py-3 border-b border-gray-100">
+      <span class="text-gray-600">Current NAV</span>
+      <span class="text-lg font-semibold text-gray-900">₹<%= number_with_precision(item.current_nav, precision: 2) %></span>
+    </div>
+    <div class="flex justify-between items-center py-3 border-b border-gray-100">
+      <span class="text-gray-600">Current Value</span>
+      <span class="text-lg font-semibold text-gray-900">₹<%= number_with_precision(item.current_value, precision: 2) %></span>
+    </div>
+    <div class="flex justify-between items-center py-3">
+      <span class="text-gray-600">Status</span>
+      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+        <%= item.status&.humanize || 'Active' %>
+      </span>
+    </div>
+  </div>
+</div>

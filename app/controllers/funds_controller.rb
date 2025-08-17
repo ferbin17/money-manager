@@ -3,10 +3,6 @@
 class FundsController < ApplicationController
   include ItemCrudable
 
-  def show
-    @fund = @item
-  end
-
   private
 
   def item_type

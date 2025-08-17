@@ -3,10 +3,6 @@
 class GoalsController < ApplicationController
   include ItemCrudable
 
-  def show
-    @goal = @item
-  end
-
   private
 
   def item_type
