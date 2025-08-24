@@ -5,6 +5,9 @@ class Fund < ApplicationRecord
 
   belongs_to :asset_house
 
+  has_many :fund_transactions, dependent: :destroy
+  has_many :transactions, through: :fund_transactions
+
   enum :fund_type, {
     misc: 0,
     savings: 1,
