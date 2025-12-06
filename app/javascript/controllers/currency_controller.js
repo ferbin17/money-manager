@@ -1,4 +1,4 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "stimulus"
 
 export default class extends Controller {
   static targets = ["button", "menu", "display", "mobileSelect"]
@@ -26,8 +26,10 @@ export default class extends Controller {
   }
 
   toggle() {
-    this.menuTarget.classList.toggle('hidden')
-    this.buttonTarget.setAttribute('aria-expanded', !this.menuTarget.classList.contains('hidden'))
+    if (this.hasMenuTarget && this.hasButtonTarget) {
+      this.menuTarget.classList.toggle('hidden')
+      this.buttonTarget.setAttribute('aria-expanded', !this.menuTarget.classList.contains('hidden'))
+    }
   }
 
   select(event) {
@@ -66,13 +68,20 @@ export default class extends Controller {
   }
 
   close() {
-    this.menuTarget.classList.add('hidden')
-    this.buttonTarget.setAttribute('aria-expanded', 'false')
+    if (this.hasMenuTarget) {
+      this.menuTarget.classList.add('hidden')
+    }
+    if (this.hasButtonTarget) {
+      this.buttonTarget.setAttribute('aria-expanded', 'false')
+    }
   }
 
   handleClickOutside(event) {
     if (!this.element.contains(event.target)) {
-      this.close()
+      // Only close if we have the required targets
+      if (this.hasMenuTarget && this.hasButtonTarget) {
+        this.close()
+      }
     }
   }
 

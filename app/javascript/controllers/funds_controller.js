@@ -1,5 +1,4 @@
-import { Controller } from "@hotwired/stimulus"
-import { CurrencyHelper } from "../helpers/currency_helper.js"
+import { Controller } from "stimulus"
 
 export default class extends Controller {
   static targets = ["currencyAmount"]
@@ -9,14 +8,18 @@ export default class extends Controller {
     this.formatAllAmounts()
     
     // Listen for currency changes
-    CurrencyHelper.onCurrencyChange(() => {
-      this.formatAllAmounts()
-    })
+    if (window.CurrencyHelper) {
+      window.CurrencyHelper.onCurrencyChange(() => {
+        this.formatAllAmounts()
+      })
+    }
   }
 
   disconnect() {
     // Clean up event listener
-    CurrencyHelper.offCurrencyChange(this.formatAllAmounts.bind(this))
+    if (window.CurrencyHelper) {
+      window.CurrencyHelper.offCurrencyChange(this.formatAllAmounts.bind(this))
+    }
   }
 
   formatAllAmounts() {
@@ -26,18 +29,18 @@ export default class extends Controller {
     amountElements.forEach(element => {
       const amount = parseFloat(element.dataset.currencyFormat)
       if (!isNaN(amount)) {
-        element.textContent = CurrencyHelper.formatCurrency(amount)
+        element.textContent = window.CurrencyHelper ? window.CurrencyHelper.formatCurrency(amount) : amount
       }
     })
   }
 
   // Method to format a specific amount
   formatAmount(amount) {
-    return CurrencyHelper.formatCurrency(amount)
+    return window.CurrencyHelper ? window.CurrencyHelper.formatCurrency(amount) : amount
   }
 
   // Method to get current currency info
   getCurrentCurrency() {
-    return CurrencyHelper.getCurrentCurrency()
+    return window.CurrencyHelper ? window.CurrencyHelper.getCurrentCurrency() : { symbol: '₹', code: 'INR' }
   }
 }
