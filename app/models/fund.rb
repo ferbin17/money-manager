@@ -5,8 +5,7 @@ class Fund < ApplicationRecord
 
   belongs_to :asset_house
 
-  has_many :fund_transactions, dependent: :destroy
-  has_many :transactions, through: :fund_transactions
+  has_many :transactions, dependent: :destroy
 
   enum :fund_type, {
     misc: 0,
@@ -32,4 +31,10 @@ class Fund < ApplicationRecord
   }
 
   validates :name, :fund_type, :subtype, presence: true
+
+  def refresh_total_investment
+    net_investment = transactions.transaction_type_buy.sum(&:amount) - transactions.transaction_type_sell.sum(&:amount)
+
+    update_attribute(:total_investment, net_investment) # rubocop:disable Rails/SkipsModelValidations
+  end
 end

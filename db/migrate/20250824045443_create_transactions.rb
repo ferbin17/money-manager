@@ -11,6 +11,7 @@ class CreateTransactions < ActiveRecord::Migration[7.1]
       t.text :notes
       t.integer :status, default: 0
       t.boolean :deleted, default: false
+      t.references :fund, null: false, foreign_key: true
       t.timestamps
     end
     

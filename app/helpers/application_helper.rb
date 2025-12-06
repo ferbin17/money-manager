@@ -18,7 +18,7 @@ module ApplicationHelper
       { title: "Dashboard", path: root_path },
       { title: "Funds", path: funds_path },
       { title: "Asset Houses", path: asset_houses_path },
-      { title: "Transactions", path: "#" },
+      { title: "Transactions", path: transactions_path },
       { title: "Reports", path: "#" },
       { title: "Budget", path: "#" },
       { title: "Settings", path: "#" }

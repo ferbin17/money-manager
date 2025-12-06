@@ -38,7 +38,6 @@ module ItemCrudable
   end
 
   def update
-    p item_params
     if @item.update(item_params)
       redirect_to @item, notice: t("#{item_type}s.updated_successfully")
     else
@@ -55,7 +54,7 @@ module ItemCrudable
   private
 
   def set_item
-    p @item = item_class.find(params[:id])
+    @item = item_class.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to send("#{item_type}s_path"), alert: t("#{item_type}s.not_found")
   end

@@ -9,7 +9,7 @@ class CreateFunds < ActiveRecord::Migration[7.1]
       t.decimal :current_value, precision: 15, scale: 2, default: 0.0
       t.decimal :current_nav, precision: 10, scale: 4, default: 0.0
       t.boolean :deleted, default: false
-      t.references :asset_house, null: false, foreign_key: true
+      t.references :asset_house, foreign_key: true
 
       t.timestamps
     end
