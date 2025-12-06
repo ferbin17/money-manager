@@ -1,116 +1,117 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-ruby '3.3.0'
+ruby "3.3.0"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 7.1.5', '>= 7.1.5.1'
+gem "rails", "~> 7.1.5", ">= 7.1.5.1"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem 'sprockets-rails'
+gem "sprockets-rails"
 
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 1.1'
+gem "pg", "~> 1.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem 'puma', '>= 5.0'
+gem "puma", ">= 5.0"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem 'importmap-rails'
+gem "importmap-rails"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem 'turbo-rails'
+gem "turbo-rails"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem 'stimulus-rails'
+gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem 'jbuilder'
+gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
-gem 'redis', '>= 4.0.1'
+gem "redis", ">= 4.0.1"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
-gem 'kredis'
+gem "kredis"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-gem 'bcrypt', '~> 3.1.7'
+gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[windows jruby]
+gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', require: false
+gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem 'image_processing', '~> 1.2'
+gem "image_processing", "~> 1.2"
 
 # Use Tailwind CSS for styling
-gem 'tailwindcss-rails'
+gem "tailwindcss-rails"
 
 # Pagination
-gem 'kaminari'
+gem "kaminari"
 
 # API Documentation
-gem 'rswag-api'
-gem 'rswag-specs'
-gem 'rswag-ui'
+gem "rswag-api"
+gem "rswag-specs"
+gem "rswag-ui"
+
+gem "activerecord-import"
 
 group :development, :test do
   # Testing framework
-  gem 'rspec-rails'
+  gem "rspec-rails"
 
   # Factory for creating test data
-  gem 'factory_bot_rails'
+  gem "factory_bot_rails"
 
   # Faker for generating test data
-  gem 'faker'
+  gem "faker"
 
   # Database cleaner for tests
-  gem 'database_cleaner-active_record'
+  gem "database_cleaner-active_record"
 
   # Shoulda matchers for easier testing
-  gem 'shoulda-matchers'
+  gem "shoulda-matchers"
 
   # Capybara for integration testing
-  gem 'capybara'
+  gem "capybara"
 
   # Debugging
-  gem 'pry-byebug'
-  gem 'pry-rails'
+  gem "pry-byebug"
+  gem "pry-rails"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem 'web-console'
+  gem "web-console"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  gem 'rack-mini-profiler'
+  gem "rack-mini-profiler"
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  gem 'spring'
+  gem "spring"
 
   # Code quality and style
-  gem 'rubocop', require: false
-  gem 'rubocop-performance', require: false
-  gem 'rubocop-rails', require: false
-  gem 'rubocop-rspec', require: false
+  gem "rubocop", require: false
+  gem "rubocop-performance", require: false
+  gem "rubocop-rails", require: false
+  gem "rubocop-rspec", require: false
 
   # Better error pages
-  gem 'better_errors'
-  gem 'binding_of_caller'
+  gem "better_errors"
+  gem "binding_of_caller"
 
   # Annotate models with schema information
-  gem 'annotate'
+  gem "annotate"
 
   # Bullet for N+1 query detection
-  gem 'bullet'
+  gem "bullet"
 end
 
 group :test do
   # Additional test helpers
-  gem 'rspec-activemodel-mocks'
-  gem 'timecop'
-  gem 'vcr'
-  gem 'webmock'
+  gem "rspec-activemodel-mocks"
+  gem "timecop"
+  gem "vcr"
+  gem "webmock"
 end
-
