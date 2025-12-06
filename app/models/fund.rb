@@ -32,6 +32,12 @@ class Fund < ApplicationRecord
 
   validates :name, :fund_type, :subtype, presence: true
 
+  def refresh
+    refresh_total_investment
+  end
+
+  private
+
   def refresh_total_investment
     net_investment = transactions.transaction_type_buy.sum(&:amount) - transactions.transaction_type_sell.sum(&:amount)
 

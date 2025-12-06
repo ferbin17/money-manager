@@ -20,6 +20,13 @@ Rails.application.routes.draw do
   # Goals
   resources :goals
 
+  # Transactions
+  resources :transactions do
+    collection do
+      post :import
+    end
+  end
+
   # Defines the root path route ("/")
   root "dashboard#index"
 end
